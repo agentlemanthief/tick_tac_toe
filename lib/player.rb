@@ -1,4 +1,6 @@
-# Creates a new player object
+# Frozen_string_literal: true
+
+# Creates a new player object for storing player state
 class Player
   attr_reader :name, :o_or_x
   attr_accessor :score
@@ -20,21 +22,25 @@ class Player
   def assign_o_or_x
     case @@previous_o_or_x
     when 'X'
-      puts "You are O's you go second"
+      puts "You are O's you go second\n"
       'O'
     when 'O'
-      puts "You are X's, you go first"
+      puts "You are X's, you go first\n"
       'X'
     else
-      if rand(2).zero?
-        @o_or_x = 'X'
-        puts "You are X's, you go first\n"
-      else
-        @o_or_x = 'O'
-        puts "You are O's, you go second\n"
-      end
-      @@previous_o_or_x = @o_or_x
+      random_assign
     end
+  end
+
+  def random_assign
+    if rand(2).zero?
+      @o_or_x = 'X'
+      puts "You are X's, you go first\n"
+    else
+      @o_or_x = 'O'
+      puts "You are O's, you go second\n"
+    end
+    @@previous_o_or_x = @o_or_x
   end
 
   def name_by_o_or_x(o_or_x)
